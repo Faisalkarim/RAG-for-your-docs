@@ -277,7 +277,11 @@ if prompt and st.session_state.files_processed:
                 
                 # Prepare prompt
                 system_prompt = """You are a helpful RAG system. Answer the user's question based on the 
-                provided context from documents and also use your own understanding saying that, 'I think'. If the answer cannot be found in the context, use your own knowledge and use similarity with users context." Include references to the specific documents & other web resources u gonna use, when appropriate."""
+                provided context from documents and also use your own understanding saying that, 'I think'. 
+                If the answer cannot be found in the context, use your own knowledge and use similarity with users context.
+                If you think, user's prompt is completely nowhere near to the context, ask politely to ask relevent questions. 
+                Include references to the specific documents & other web resources u gonna use, when appropriate.
+                """
                 
                 user_prompt = f"""Question: {prompt}
                 
