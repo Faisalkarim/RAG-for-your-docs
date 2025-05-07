@@ -10,7 +10,7 @@ import traceback
 import time
 
 # ----- Page Config -----
-st.set_page_config(page_title="Ask About My Research", page_icon="📚", layout="centered")
+st.set_page_config(page_title="Play with RAG", page_icon="📚", layout="centered")
 
 # ----- Custom CSS -----
 st.markdown("""
@@ -196,7 +196,7 @@ if not st.session_state.files_processed:
                         st.success(f"Successfully processed {len(uploaded_files)} PDFs with {len(st.session_state.all_chunks)} total chunks")
                         st.session_state.messages.append({
                             "role": "assistant", 
-                            "content": f"I've processed {len(uploaded_files)} research papers. You can now ask me questions about them!"
+                            "content": f"I've processed {len(uploaded_files)} all the documents. You can now ask me questions about them!"
                         })
                         
                     except Exception as e:
@@ -234,7 +234,7 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 # Input area and processing
-prompt = st.chat_input("Ask a question about my research...")
+prompt = st.chat_input("Ask a question about documents...")
 if prompt and st.session_state.files_processed:
     # Add user message to chat
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -276,16 +276,15 @@ if prompt and st.session_state.files_processed:
                 }
                 
                 # Prepare prompt
-                system_prompt = """You are a helpful research assistant. Answer the user's question based ONLY on the 
-                provided context from research papers. If the answer cannot be found in the context, say "I don't have enough information 
-                to answer this question based on the provided research papers." Include references to the specific papers when appropriate."""
+                system_prompt = """You are a helpful RAG system. Answer the user's question based on the 
+                provided context from documents and also use your own understanding saying that, 'I think'. If the answer cannot be found in the context, use your own knowledge and use similarity with users context." Include references to the specific documents & other web resources u gonna use, when appropriate."""
                 
                 user_prompt = f"""Question: {prompt}
                 
-                Context from relevant research papers:
+                Context from relevant documents:
                 {context}
                 
-                Please provide a helpful, accurate answer based only on the information in these research papers."""
+                Please provide a helpful, accurate answer based only on the information in these documents."""
                 
                 data = {
                     "model": model,
@@ -361,7 +360,7 @@ elif prompt and not st.session_state.files_processed:
 if not st.session_state.files_processed and not st.session_state.messages:
     with st.chat_message("assistant"):
         st.markdown("""
-        👋 Welcome! What's cooking???.
+        👋 Welcome! What's cooking???
         
         To get started:
         1. Upload your documents using the uploader above
@@ -375,13 +374,14 @@ if not st.session_state.files_processed and not st.session_state.messages:
     st.session_state.messages.append({
         "role": "assistant", 
         "content": """
-        👋 Welcome! I'm your research assistant.
+        👋 Welcome! What's cooking???
         
         To get started:
-        1. Upload your research papers using the uploader above
+        1. Upload your documents using the uploader above
         2. Click "Process Files" to analyze them
-        3. Ask me questions about your research in the chat input below
+        3. Ask me questions about your documents in the chat input below
         
-        I'll use RAG (Retrieval-Augmented Generation) to find relevant information in your papers and provide accurate answers.
+        You can change the settings and play around with the model and parameters in the sidebar.
+        I'll use RAG (Retrieval-Augmented Generation) to find relevant information in your documents and provide accurate answers.
         """
     })
