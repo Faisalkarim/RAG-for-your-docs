@@ -92,7 +92,7 @@ with st.sidebar:
 
 # ----- Title -----
 st.markdown('<div class="title">Ask Me About your documents</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">An interactive techical aspect focused RAG</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">An interactive techical aspect focused RAG. Upload your docs & do not forget to enter API key</div>', unsafe_allow_html=True)
 
 # Initialize session state
 if "messages" not in st.session_state:
@@ -196,7 +196,7 @@ if not st.session_state.files_processed:
                         st.success(f"Successfully processed {len(uploaded_files)} PDFs with {len(st.session_state.all_chunks)} total chunks")
                         st.session_state.messages.append({
                             "role": "assistant", 
-                            "content": f"I've processed {len(uploaded_files)} all the documents. You can now ask me questions about them!"
+                            "content": f"I've processed all({len(uploaded_files)}) the documents. You can now ask me questions about them!"
                         })
                         
                     except Exception as e:
@@ -362,30 +362,29 @@ elif prompt and not st.session_state.files_processed:
 
 # Instructions for first-time users
 if not st.session_state.files_processed and not st.session_state.messages:
-    with st.chat_message("assistant"):
-        st.markdown("""
-        👋 Welcome! What's cooking???
+    # with st.chat_message("assistant"):
+    #     st.markdown("""
+    #     👋 Welcome! What's cooking???
         
-        To get started:
-        1. Upload your documents using the uploader above
-        2. Click "Process Files" to analyze them
-        3. Ask me questions about your documents in the chat input below
+    #     To get started:
+    #     1. Upload your documents using the uploader above
+    #     2. Click "Process Files" to analyze them
+    #     3. Ask me questions about your documents in the chat input below
         
-        You can change the settings and play around with the model and parameters in the sidebar.
-        I'll use RAG (Retrieval-Augmented Generation) to find relevant information in your documents and provide accurate answers.
-        """)
+    #     You can change the settings and play around with the model and parameters in the sidebar.
+    #     I'll use RAG (Retrieval-Augmented Generation) to find relevant information in your documents and provide accurate answers.
+    #     """)
     
     st.session_state.messages.append({
         "role": "assistant", 
         "content": """
         👋 Welcome! What's cooking???
         
-        To get started:
-        1. Upload your documents using the uploader above
-        2. Click "Process Files" to analyze them
-        3. Ask me questions about your documents in the chat input below
+        Now,
+        1. Click "Process Files" to analyze them
+        2. Ask me questions about your documents in the chat input below
         
         You can change the settings and play around with the model and parameters in the sidebar.
-        I'll use RAG (Retrieval-Augmented Generation) to find relevant information in your documents and provide accurate answers.
+        RAG (Retrieval-Augmented Generation) gonna find relevant information in your documents and provide accurate answers.
         """
     })
