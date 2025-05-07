@@ -84,8 +84,8 @@ with st.sidebar:
     
     # Contact info
     st.markdown('<div class="sidebar-text sidebar-link">🔗 <a href="#" target="_blank">Portfolio Website</a></div>', unsafe_allow_html=True)
-    st.markdown('<div class="sidebar-text sidebar-link">🐱 <a href="#" target="_blank">GitHub</a></div>', unsafe_allow_html=True)
-    st.markdown('<div class="sidebar-text sidebar-link">💼 <a href="#" target="_blank">LinkedIn</a></div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-text sidebar-link">🐱 <a href="https://github.com/Faisalkarim" target="_blank">GitHub</a></div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-text sidebar-link">💼 <a href="https://www.linkedin.com/in/itsfaisalkarim/" target="_blank">LinkedIn</a></div>', unsafe_allow_html=True)
     
     st.markdown("---")
     st.markdown('<div class="sidebar-text">📧 itsfaisalkarim@gmail.com </div>', unsafe_allow_html=True)
@@ -350,25 +350,26 @@ elif prompt and not st.session_state.files_processed:
         st.markdown(prompt)
         
     with st.chat_message("assistant"):
-        st.markdown("Please upload and process some research papers first before asking questions.")
+        st.markdown("Please upload and process some documents first before asking questions.")
     
     st.session_state.messages.append({
         "role": "assistant", 
-        "content": "Please upload and process some research papers first before asking questions."
+        "content": "Please upload and process some documents first before asking questions."
     })
 
 # Instructions for first-time users
 if not st.session_state.files_processed and not st.session_state.messages:
     with st.chat_message("assistant"):
         st.markdown("""
-        👋 Welcome! I'm your research assistant.
+        👋 Welcome! What's cooking???.
         
         To get started:
-        1. Upload your research papers using the uploader above
+        1. Upload your documents using the uploader above
         2. Click "Process Files" to analyze them
-        3. Ask me questions about your research in the chat input below
+        3. Ask me questions about your documents in the chat input below
         
-        I'll use RAG (Retrieval-Augmented Generation) to find relevant information in your papers and provide accurate answers.
+        You can change the settings and play around with the model and parameters in the sidebar.
+        I'll use RAG (Retrieval-Augmented Generation) to find relevant information in your documents and provide accurate answers.
         """)
     
     st.session_state.messages.append({
