@@ -71,7 +71,7 @@ with st.sidebar:
 
 
         # Model selection
-    model = st.selectbox(
+    EM_model = st.selectbox(
         "Select Embedding Model",
         ["all-MiniLM-L6-v2", "Gemma", "Ollama"],
         help="Choose the model to use for generating embeddings"
