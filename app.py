@@ -68,6 +68,14 @@ with st.sidebar:
         ["deepseek/deepseek-r1:free", "anthropic/claude-3-opus", "google/gemini-1.5-pro"],
         help="Choose the model to use for generating responses"
     )
+
+
+        # Model selection
+    model = st.selectbox(
+        "Select Embedding Model",
+        ["all-MiniLM-L6-v2", "Gemma", "Ollama"],
+        help="Choose the model to use for generating embeddings"
+    )
     
     # Advanced settings in expander
     with st.expander("Advanced Settings"):
